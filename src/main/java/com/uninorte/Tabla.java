@@ -4,23 +4,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Tabla {
-
+    private static int contadorTablas = 1; // Contador estático para las tablas
+    private int idTabla; // ID único para esta tabla
+    private int contadorRegistros; // Contador de registros dentro de esta tabla
     private List<Registro> registros;
-    private static int contadorTabla = 1;  // Contador global para las tablas
-    private int contadorRegistros;  // Contador local para los registros dentro de esta tabla
 
     public Tabla() {
+        this.idTabla = contadorTablas++;
+        this.contadorRegistros = 1;
         this.registros = new ArrayList<>();
-        this.contadorRegistros = 1;  // La primera tabla comienza con el primer registro
     }
 
-    public String agregarRegistro(Registro registro) {
-        // Generamos el ID del registro basándonos en el contador de la tabla y el contador de registros
-        String id = String.format("%03d%03d", contadorTabla, contadorRegistros);
-        registro.setId(id);
-        registros.add(registro);
-        contadorRegistros++;  // Incrementamos el contador de registros de la tabla
-        return id;
+    public static void incrementarContadorTabla() {
+        contadorTablas++;
+    }
+
+    public static void resetearContadorTabla() {
+        contadorTablas = 1;
+    }
+
+    public String agregarRegistro(Object... valores) {
+        String idRegistro = String.format("%03d%03d", idTabla, contadorRegistros++);
+        registros.add(new Registro(idRegistro, valores));
+        return idRegistro;
     }
 
     public int ObtenerNumRegistros() {
@@ -30,9 +36,7 @@ public class Tabla {
     public String imprimir() {
         StringBuilder sb = new StringBuilder();
         for (Registro registro : registros) {
-            sb.append("ID: ").append(registro.getId())
-              .append(" ").append(registro.imprimir())
-              .append(" --- ");
+            sb.append(registro.toString()).append("\n");
         }
         return sb.toString();
     }
@@ -46,14 +50,5 @@ public class Tabla {
         }
         return false;
     }
-
-    // Método para incrementar el contador de tablas (se usa en BaseDeDatos)
-    public static void incrementarContadorTabla() {
-        contadorTabla++;  // Incrementa el contador global solo cuando se crea una nueva tabla
-    }
-
-    // Método para obtener el contador de tablas
-    public static int getContadorTabla() {
-        return contadorTabla;
-    }
 }
+

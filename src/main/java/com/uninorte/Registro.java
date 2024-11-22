@@ -1,31 +1,31 @@
 package com.uninorte;
 
-public class Registro {
+import java.util.Arrays;
 
+public class Registro {
     private String id;
     private Object[] valores;
 
-    public Registro(Object... valores) {
-        this.valores = valores;
-    }
-
-    public void setId(String id) {
+    public Registro(String id, Object... valores) {
         this.id = id;
+        this.valores = valores;
     }
 
     public String getId() {
         return id;
     }
 
+    public Object[] getValores() {
+        return valores;
+    }
+
     public void setValores(Object... valores) {
         this.valores = valores;
     }
 
-    public String imprimir() {
-        StringBuilder sb = new StringBuilder();
-        for (Object valor : valores) {
-            sb.append(valor).append(" | ");
-        }
-        return sb.toString().trim();
+    @Override
+    public String toString() {
+        return id + " -> " + Arrays.toString(valores);
     }
 }
+
