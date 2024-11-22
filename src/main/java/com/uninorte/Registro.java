@@ -1,27 +1,31 @@
 package com.uninorte;
 
 public class Registro {
+
     private String id;
-    private Object[] datos;
+    private Object[] valores;
 
-    public Registro(String id, Object... datos) {
-        this.id = id;
-        this.datos = datos;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public Object[] getDatos() {
-        return datos;
+    public Registro(Object... valores) {
+        this.valores = valores;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public void setDatos(Object[] datos) {
-        this.datos = datos;
+    public String getId() {
+        return id;
+    }
+
+    public void setValores(Object... valores) {
+        this.valores = valores;
+    }
+
+    public String imprimir() {
+        StringBuilder sb = new StringBuilder();
+        for (Object valor : valores) {
+            sb.append(valor).append(" | ");
+        }
+        return sb.toString().trim();
     }
 }
