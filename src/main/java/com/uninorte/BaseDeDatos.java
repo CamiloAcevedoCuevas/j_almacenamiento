@@ -4,18 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BaseDeDatos {
-
     private static List<Tabla> tablas = new ArrayList<>();
 
-    public static void BorrarTodo() {
-        tablas.clear();
-        Tabla.resetearContadorTabla(); // Resetear el contador de tablas
-    }
-
-    public static String AgregarRegistro(Object... valores) {
-        for (int i = 0; i < valores.length; i++) {
-            if (valores[i] instanceof String) {
-                valores[i] = ((String) valores[i]).trim();
+    // Método público para agregar un registro con parámetros variables
+    public static String AgregarRegistro(Object... datos) {
+        for (int i = 0; i < datos.length; i++) {
+            if (datos[i] instanceof String) {
+                datos[i] = ((String) datos[i]).trim();
             }
         }
     
@@ -25,19 +20,9 @@ public class BaseDeDatos {
         }
     
         Tabla tabla = tablas.get(tablas.size() - 1);
-        return tabla.agregarRegistro(valores);
-    }    
-
-    public static int ObtenerNumeroTablas() {
-        return tablas.size();
+        return tabla.agregarRegistro(datos);
     }
 
-    public static int ObtenerNumRegistrosEnTabla(int indice) {
-        if (indice < 1 || indice > tablas.size()) {
-            return -1;
-        }
-        return tablas.get(indice - 1).ObtenerNumRegistros();
-    }
 
     public static String ImprimirTodo() {
         StringBuilder sb = new StringBuilder();
@@ -48,14 +33,36 @@ public class BaseDeDatos {
             }
         }
         return sb.toString();
-    }         
+    }
 
-    public static void EditarReg(String id, Object... nuevosValores) {
+    public static void BorrarTodo() {
+        tablas.clear();
+        Tabla.resetearContadorTabla(); // Resetear el contador de tablas
+    }
+  
+    public static void EditarReg(String recordId, Object... newValues) {
         for (Tabla tabla : tablas) {
-            if (tabla.editarRegistro(id, nuevosValores)) {
+            if (tabla.editarRegistro(recordId, newValues)) {
                 break;
             }
         }
     }
-}
 
+    public static boolean BorrarReg(String recordId) {
+       
+        return false;
+    }
+
+    
+    public static int ObtenerNumRegistrosEnTabla(int i) {
+        if (i < 1 || i > tablas.size()) {
+            return -1;
+        }
+        return tablas.get(i - 1).ObtenerNumRegistros();
+    }
+    
+    public static Integer ObtenerNumeroTablas() {
+        return tablas.size();
+    }
+    
+}

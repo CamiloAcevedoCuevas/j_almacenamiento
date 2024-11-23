@@ -1,7 +1,5 @@
 package com.uninorte;
 
-import java.util.Arrays;
-
 public class Registro {
     private String id;
     private Object[] valores;
@@ -27,7 +25,6 @@ public class Registro {
     public String toString() {
         StringBuilder sb = new StringBuilder("ID: ").append(id).append(" ");
         for (int i = 0; i < valores.length; i++) {
-            // Asegúrate de que cualquier valor String esté limpio de espacios extra
             if (valores[i] instanceof String) {
                 sb.append(((String) valores[i]).trim());
             } else {
