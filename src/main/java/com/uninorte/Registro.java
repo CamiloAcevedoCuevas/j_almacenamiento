@@ -25,7 +25,19 @@ public class Registro {
 
     @Override
     public String toString() {
-        return id + " -> " + Arrays.toString(valores);
+        StringBuilder sb = new StringBuilder("ID: ").append(id).append(" ");
+        for (int i = 0; i < valores.length; i++) {
+            // Asegúrate de que cualquier valor String esté limpio de espacios extra
+            if (valores[i] instanceof String) {
+                sb.append(((String) valores[i]).trim());
+            } else {
+                sb.append(valores[i]);
+            }
+            if (i < valores.length - 1) {
+                sb.append(" | ");
+            }
+        }
+        return sb.toString();
     }
-}
 
+}

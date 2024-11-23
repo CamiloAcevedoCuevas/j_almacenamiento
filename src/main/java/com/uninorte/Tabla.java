@@ -35,11 +35,15 @@ public class Tabla {
 
     public String imprimir() {
         StringBuilder sb = new StringBuilder();
-        for (Registro registro : registros) {
-            sb.append(registro.toString()).append("\n");
+        for (int i = 0; i < registros.size(); i++) {
+            Registro registro = registros.get(i);
+            sb.append(registro.toString());
+            if (i < registros.size() - 1) {
+                sb.append(" --- "); // Solo agregar separador si no es el último registro
+            }
         }
         return sb.toString();
-    }
+    }     
 
     public boolean editarRegistro(String id, Object... nuevosValores) {
         for (Registro registro : registros) {
@@ -50,5 +54,5 @@ public class Tabla {
         }
         return false;
     }
-}
 
+}

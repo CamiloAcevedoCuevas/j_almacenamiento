@@ -68,7 +68,7 @@ public class TestAlmacenamiento {
 
         assertEquals("002001", BaseDeDatos.AgregarRegistro(Double.valueOf(1.5)));
         
-        assertEquals("ID: 001001 0 | Hola --- ID: 001002 1 |  mundo ----- ID: 002001 1.5", BaseDeDatos.ImprimirTodo());
+        assertEquals("ID: 001001 0 | Hola --- ID: 001002 1 | mundo ----- ID: 002001 1.5", BaseDeDatos.ImprimirTodo());
         
         BaseDeDatos.BorrarTodo();
     }

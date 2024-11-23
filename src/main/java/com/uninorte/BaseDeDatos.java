@@ -13,16 +13,20 @@ public class BaseDeDatos {
     }
 
     public static String AgregarRegistro(Object... valores) {
-        // Si no hay tablas o la última tabla tiene 2 registros, agregar una nueva tabla
+        for (int i = 0; i < valores.length; i++) {
+            if (valores[i] instanceof String) {
+                valores[i] = ((String) valores[i]).trim();
+            }
+        }
+    
         if (tablas.isEmpty() || tablas.get(tablas.size() - 1).ObtenerNumRegistros() >= 2) {
-            Tabla tabla = new Tabla(); // Crear nueva tabla
+            Tabla tabla = new Tabla();
             tablas.add(tabla);
         }
-
-        // Agregar el registro a la última tabla
+    
         Tabla tabla = tablas.get(tablas.size() - 1);
         return tabla.agregarRegistro(valores);
-    }
+    }    
 
     public static int ObtenerNumeroTablas() {
         return tablas.size();
@@ -37,11 +41,14 @@ public class BaseDeDatos {
 
     public static String ImprimirTodo() {
         StringBuilder sb = new StringBuilder();
-        for (Tabla tabla : tablas) {
-            sb.append(tabla.imprimir());
+        for (int i = 0; i < tablas.size(); i++) {
+            sb.append(tablas.get(i).imprimir().trim()); // Quita espacios en cada tabla
+            if (i < tablas.size() - 1) {
+                sb.append(" ----- "); // Separador entre tablas
+            }
         }
         return sb.toString();
-    }
+    }         
 
     public static void EditarReg(String id, Object... nuevosValores) {
         for (Tabla tabla : tablas) {
