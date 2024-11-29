@@ -6,4 +6,13 @@ El almacenamiento de datos se realiza en archivos de acuerdo con la estructura d
 
 Ejecutar las pruebas para verificar el funcionamiento del sistema.
 
-Maria Barros y Camilo Acevedo
+## Maria Barros y Camilo Acevedo
+
+## Comandos Soportados
+
+BorrarTodo
+AgregarRegistro
+ObtenerNumeroTablas
+ObtenerNumRegistrosEnTabla
+ImprimirTodo
+EditarReg
