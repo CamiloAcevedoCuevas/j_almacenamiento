@@ -11,8 +11,13 @@ Ejecutar las pruebas para verificar el funcionamiento del sistema.
 ## Comandos Soportados
 
 BorrarTodo
+
 AgregarRegistro
+
 ObtenerNumeroTablas
+
 ObtenerNumRegistrosEnTabla
+
 ImprimirTodo
+
 EditarReg
